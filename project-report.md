@@ -1,11 +1,11 @@
-# Signet: Hybrid Blockchain Content Verification System
+# metasignet: Hybrid Blockchain Content Verification System
 ## Comprehensive Project Report
 
 ## 1. Executive Summary
 
-This project presents Signet, a hybrid blockchain-based content verification system designed to address the growing problem of content authenticity on social media platforms, with specific integration for Bluesky. By combining the user-friendly nature of Streamlit with the security of Ethereum blockchain technology, our system provides an accessible yet powerful mechanism for verifying the authenticity and ownership of digital content.
+This project presents metasignet, a hybrid blockchain-based content verification system designed to address the growing problem of content authenticity on social media platforms, with specific integration for Bluesky. By combining the user-friendly nature of Streamlit with the security of Ethereum blockchain technology, our system provides an accessible yet powerful mechanism for verifying the authenticity and ownership of digital content.
 
-Signet implements a progressive Web3 adoption strategy, allowing users to begin with familiar, accessible interfaces while offering the option to upgrade to blockchain verification for enhanced security. The solution leverages image perceptual hashing to create unique content fingerprints and provides verification certificates that can be shared across platforms.
+metasignet implements a progressive Web3 adoption strategy, allowing users to begin with familiar, accessible interfaces while offering the option to upgrade to blockchain verification for enhanced security. The solution leverages image perceptual hashing to create unique content fingerprints and provides verification certificates that can be shared across platforms.
 
 User testing revealed strong interest in the solution, with 75% of testers expressing willingness to use such a system for their own content. The hybrid approach successfully bridges the gap between blockchain security and mainstream user accessibility.
 
@@ -66,7 +66,7 @@ Our research examined existing approaches to content verification and their limi
 
 ### 3.1 Technology Stack
 
-Signet utilizes the following technologies:
+metasignet utilizes the following technologies:
 
 - **Frontend**: Streamlit (Python-based web application framework)
 - **Backend**: Python with Web3.py, PIL, imagehash libraries
@@ -174,7 +174,7 @@ Our system implements several security measures:
 
 ### 4.1 Smart Contract Implementation
 
-The Signet smart contract implements:
+The metasignet smart contract implements:
 
 1. **Content Registration**:
    ```solidity
@@ -392,8 +392,8 @@ User testing provided valuable insights:
 
 ## 8. Conclusion
 
-Signet successfully demonstrates that a hybrid approach combining Streamlit's accessibility with blockchain's security can effectively address the critical problem of content authenticity on social media platforms, particularly for Bluesky users. By providing dual verification paths, the system bridges the gap between blockchain technology and mainstream user adoption.
+metasignet successfully demonstrates that a hybrid approach combining Streamlit's accessibility with blockchain's security can effectively address the critical problem of content authenticity on social media platforms, particularly for Bluesky users. By providing dual verification paths, the system bridges the gap between blockchain technology and mainstream user adoption.
 
 The implementation of perceptual image hashing, Bluesky integration, and progressive Web3 adoption creates a robust foundation for content verification that can scale across platforms and content types. User testing confirms both the technical viability and market interest for such a solution.
 
-While challenges remain in terms of blockchain complexity, content type support, and cross-platform integration, our prototype provides a solid foundation for future development. By continuing to refine this hybrid approach, we believe Signet can become a standard tool for content creators looking to protect and verify their digital creations across the evolving social media landscape.
+While challenges remain in terms of blockchain complexity, content type support, and cross-platform integration, our prototype provides a solid foundation for future development. By continuing to refine this hybrid approach, we believe metasignet can become a standard tool for content creators looking to protect and verify their digital creations across the evolving social media landscape.
