@@ -5,11 +5,9 @@
 
 This project presents metasignet, a hybrid blockchain-based content verification system designed to address the growing problem of content authenticity on social media platforms, with specific integration for Bluesky. By combining the user-friendly nature of Streamlit with the security of Ethereum blockchain technology, the system aims to provide an accessible yet powerful mechanism for verifying the authenticity and ownership of digital content.
 
-metasignet implements a progressive Web3 adoption strategy, allowing users to begin with familiar, accessible interfaces while offering the option to upgrade to blockchain verification for enhanced security. The solution leverages image perceptual hashing to create unique content fingerprints and provides verification certificates that can be shared across platforms.
+metasignet implements a progressive Web3 adoption strategy, allowing users to begin with familiar, accessible interfaces while offering the option to upgrade to blockchain verification for enhanced security. The solution leverages image perceptual hashing to create unique content fingerprints and provides verification certificates that can be shared across platforms. The hybrid approach successfully bridges the gap between blockchain security and mainstream user accessibility.
 
-User testing revealed strong interest in the solution, with 75% of testers expressing willingness to use such a system for their own content. The hybrid approach successfully bridges the gap between blockchain security and mainstream user accessibility.
-
-Future development will focus on multi-platform support, enhanced content type handling, and deeper integration with decentralized storage options.
+Future development could focus on multi-platform support, enhanced content type handling, and deeper integration with decentralized storage options.
 
 ## 2. Problem Statement and Background Research
 
@@ -25,7 +23,7 @@ Social media platforms have become primary channels for information disseminatio
 
 ### 2.2 Background Research
 
-Our research examined existing approaches to content verification and their limitations:
+The research examined existing approaches to content verification and their limitations:
 
 **Platform-Based Verification**:
 - Blue checkmarks and verification badges
@@ -45,7 +43,7 @@ Our research examined existing approaches to content verification and their limi
 **Pure Blockchain Approaches**:
 - Recording content hashes on public blockchains
 - Pros: Immutable, transparent
-- Cons: High barrier to entry, gas costs, complexity for average users
+- Cons: High barrier to entry, potential high gas costs, complexity for average users
 
 **Hybrid Approaches**:
 - Combining user-friendly interfaces with blockchain security
@@ -78,7 +76,7 @@ metasignet utilizes the following technologies:
 
 ### 3.2 System Architecture
 
-Our architecture consists of four primary layers:
+The architecture consists of four primary layers:
 
 1. **User Interface Layer**:
    - Streamlit web application for content registration and verification
@@ -302,7 +300,7 @@ The integration with Bluesky is managed through:
 
 ### 5.1 Testing Methodology
 
-Our testing approach included:
+Potential testing approach:
 
 1. **Smart Contract Testing**: Unit tests for contract functions
 2. **Streamlit UI Testing**: Interface functionality and responsiveness
@@ -311,43 +309,6 @@ Our testing approach included:
 5. **Web3 Integration Testing**: Blockchain transaction handling
 6. **End-to-End Workflow Testing**: Complete user journeys
 7. **User Acceptance Testing**: Real-world user testing with feedback collection
-
-### 5.2 Test Results
-
-Testing confirmed that the system meets all functional requirements:
-
-1. **Bluesky Integration**: Successfully authenticates and retrieves content
-2. **Image Processing**: Correctly generates and compares perceptual hashes
-3. **Local Verification**: Properly stores and retrieves local verification records
-4. **Blockchain Verification**: Successfully registers and verifies content on Ethereum
-5. **User Interface**: Provides intuitive access to all functionality
-6. **Progressive Web3**: Successfully implements dual verification paths
-
-### 5.3 Performance Analysis
-
-Performance testing revealed:
-
-- **Image Hash Generation**: Average of 0.3 seconds per image
-- **Blockchain Registration**: Average of 15 seconds per transaction
-- **UI Responsiveness**: Maintains performance with 50+ verification records
-- **Memory Usage**: Peak of 320MB with multiple images loaded
-- **Application Startup**: Average of 3.2 seconds
-
-### 5.4 User Feedback
-
-User testing provided valuable insights:
-
-- **Positive Feedback**:
-  - "I like that I can verify content without needing to understand blockchain"
-  - "The Bluesky integration makes it really convenient to use"
-  - "The verification certificates are professional and easy to share"
-  - "Being able to choose between blockchain and local verification is great"
-
-- **Constructive Feedback**:
-  - "The blockchain connection process could be simplified further"
-  - "I'd like to see support for video content verification"
-  - "It would be nice to have a mobile app version"
-  - "Add support for more social media platforms beyond Bluesky"
 
 ## 6. Challenges and Solutions
 
@@ -361,27 +322,10 @@ User testing provided valuable insights:
 | Blockchain Transaction Costs | Implemented optional verification paths | Cost flexibility for users |
 | Session Management | Secure state management in Streamlit | Persistent user sessions |
 
-### 6.2 User Experience Challenges
-
-| Challenge | Solution | Outcome |
-|-----------|----------|---------|
-| Blockchain Terminology | Simplified UI language and explanations | Better user understanding |
-| Verification Certificate Clarity | Designed intuitive certificate layout | Clear verification status |
-| Technical vs. Non-Technical Users | Progressive adoption approach | Catered to both user types |
-| Handling Verification Failures | Clear error messages and recovery paths | Improved user experience |
-| Explaining Value Proposition | Simplified onboarding information | Better concept understanding |
 
 ## 7. Future Work
 
-### 7.1 Short-term Improvements
-
-1. **Enhanced Content Support**: Extend beyond images to video, audio, and text content
-2. **Additional Social Platforms**: Integration with Twitter, Instagram, and other social media
-3. **Mobile Responsiveness**: Optimize Streamlit interface for mobile devices
-4. **User Experience Refinements**: Further simplify blockchain connection process
-5. **Verification Badge System**: Embeddable verification badges for content creators
-
-### 7.2 Long-term Vision
+### 7.1 Long-term Vision
 
 1. **Dedicated Mobile Application**: Native iOS and Android apps for on-the-go verification
 2. **Decentralized Storage Integration**: IPFS integration for content storage
