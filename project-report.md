@@ -3,7 +3,7 @@
 
 ## 1. Executive Summary
 
-This project presents metasignet, a hybrid blockchain-based content verification system designed to address the growing problem of content authenticity on social media platforms, with specific integration for Bluesky. By combining the user-friendly nature of Streamlit with the security of Ethereum blockchain technology, our system provides an accessible yet powerful mechanism for verifying the authenticity and ownership of digital content.
+This project presents metasignet, a hybrid blockchain-based content verification system designed to address the growing problem of content authenticity on social media platforms, with specific integration for Bluesky. By combining the user-friendly nature of Streamlit with the security of Ethereum blockchain technology, the system aims to provide an accessible yet powerful mechanism for verifying the authenticity and ownership of digital content.
 
 metasignet implements a progressive Web3 adoption strategy, allowing users to begin with familiar, accessible interfaces while offering the option to upgrade to blockchain verification for enhanced security. The solution leverages image perceptual hashing to create unique content fingerprints and provides verification certificates that can be shared across platforms.
 
