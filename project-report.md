@@ -1,233 +1,290 @@
-# metasignet: Hybrid Blockchain Content Verification System
-## Comprehensive Project Report
+# MetaSignet: Human Content Verification for Bluesky
+## Project Proposal
 
 ## 1. Executive Summary
 
-This project presents metasignet, a hybrid blockchain-based content verification system designed to address the growing problem of content authenticity on social media platforms, with specific integration for Bluesky. By combining the user-friendly nature of Streamlit with the security of Ethereum blockchain technology, the system aims to provide an accessible yet powerful mechanism for verifying the authenticity and ownership of digital content.
+This proposal presents MetaSignet, an innovative human content verification system designed to address the growing challenge of distinguishing between human-created and AI-generated content on social media platforms, with specific integration for Bluesky. By combining a user-friendly Streamlit interface with blockchain verification technology, MetaSignet provides an accessible yet powerful mechanism for creators to verify the human origin of their digital content.
 
-metasignet implements a progressive Web3 adoption strategy, allowing users to begin with familiar, accessible interfaces while offering the option to upgrade to blockchain verification for enhanced security. The solution leverages image perceptual hashing to create unique content fingerprints and provides verification certificates that can be shared across platforms. The hybrid approach successfully bridges the gap between blockchain security and mainstream user accessibility.
+MetaSignet implements a self-attestation and social vouching system that allows content creators to declare their work as human-created and build trust through community verification. The solution leverages the AT Protocol to integrate directly with Bluesky, providing a seamless verification experience that fits into creators' existing workflows.
 
-Future development could focus on multi-platform support, enhanced content type handling, and deeper integration with decentralized storage options.
+The hybrid approach balances accessibility with security, allowing non-technical users to benefit from content verification while providing stronger blockchain-based verification for those who desire it. Beyond mere verification, MetaSignet creates a community-driven trust layer that celebrates and distinguishes human creativity in an increasingly AI-dominated content landscape.
 
-## 2. Problem Statement and Background Research
+## 2. Problem Statement and Background
 
 ### 2.1 Problem Domain
 
-Social media platforms have become primary channels for information dissemination, yet they face significant challenges in verifying content authenticity, particularly affecting content creators on emerging platforms like Bluesky. These challenges include:
+The rapid advancement of AI content generation tools has created a crisis of authenticity on social media platforms. This problem is particularly relevant for emerging platforms like Bluesky that emphasize creator ownership and authenticity. Key challenges include:
 
-1. **Content Manipulation**: Digital content can be easily altered, leading to misinformation
-2. **Attribution Issues**: Original creators often lose credit for their work
-3. **Verification Opacity**: Current verification processes lack transparency
-4. **Platform Dependency**: Verification status is typically controlled by a single platform
-5. **Technical Barriers**: Blockchain solutions often have prohibitive learning curves
+1. **Content Authenticity Confusion**: Increasingly difficult to distinguish between human and AI-generated content
+2. **Creative Devaluation**: Human creative work loses value when indistinguishable from AI outputs
+3. **Attribution Issues**: Original human creators struggle to claim ownership of their work
+4. **Trust Deficit**: Audiences increasingly skeptical about the authenticity of digital content
+5. **Platform Limitations**: Social platforms lack built-in mechanisms to verify human creation
 
-### 2.2 Background Research
+### 2.2 Market Need
 
-The research examined existing approaches to content verification and their limitations:
+The need for human content verification is growing rapidly:
 
-**Platform-Based Verification**:
-- Blue checkmarks and verification badges
-- Pros: Simple for users to understand
-- Cons: Centralized, opaque process, platform-dependent
+- **AI Content Proliferation**: Text, image, and audio creation tools are becoming increasingly sophisticated
+- **Creator Economy Impact**: Human creators are competing with AI-generated content
+- **Audience Value Shift**: Growing audience preference for knowing when content is human-created
+- **Platform Trust Challenges**: Social media platforms struggling with verification challenges
+- **Bluesky Opportunity**: New platform focused on authenticity is ideal for pioneering this approach
 
-**Digital Signatures**:
-- Cryptographic signing of content
-- Pros: Technically secure
-- Cons: Complexity for users, key management issues
+### 2.3 Why Blockchain + Streamlit?
 
-**Watermarking**:
-- Embedding invisible markers in content
-- Pros: Works across platforms
-- Cons: Can be stripped, requires specialized tools
+The hybrid approach offers significant advantages:
 
-**Pure Blockchain Approaches**:
-- Recording content hashes on public blockchains
-- Pros: Immutable, transparent
-- Cons: High barrier to entry, potential high gas costs, complexity for average users
+- **Accessibility**: Streamlit provides a familiar, web-based interface accessible to non-technical users
+- **Progressive Adoption**: Users can begin with simple verification and adopt blockchain as desired
+- **Immutable Records**: Blockchain provides tamper-proof verification history
+- **Community Mechanisms**: Smart contracts enable trustless social vouching
+- **Direct Integration**: AT Protocol integration brings verification directly to the Bluesky ecosystem
 
-**Hybrid Approaches**:
-- Combining user-friendly interfaces with blockchain security
-- Pros: Accessibility while maintaining security benefits
-- Cons: Potential trade-offs in decentralization
+## 3. User Experience Design
 
-### 2.3 Stakeholder Analysis
+### 3.1 Core User Flows
 
-| Stakeholder | Needs | Challenges | Opportunities |
-|-------------|-------|------------|--------------|
-| Content Creators | Attribution, protection from plagiarism | Technical complexity, cost | Enhanced credibility, monetization |
-| Bluesky Users | Trust in content authenticity | New platform verification needs | Early adoption advantage |
-| Social Platforms | Trust, reduced misinformation | Integration complexity, user adoption | Improved platform integrity |
-| Content Consumers | Reliable information sources | Verification accessibility | Better information quality |
-| Non-Technical Users | Simple verification process | Blockchain complexity | Progressive Web3 adoption |
+MetaSignet offers a streamlined user experience built around three key activities:
 
-## 3. System Design and Architecture
+**1. Authentication Flow**
+- Users visit metasignet.app and click "Sign in with Bluesky"
+- They enter their Bluesky credentials or app password
+- MetaSignet authenticates via the AT Protocol
+- No separate account creation needed - their Bluesky identity is their MetaSignet identity
 
-### 3.1 Technology Stack
+**2. Content Verification Flow**
+- User selects a post from their Bluesky feed or enters a post URL
+- MetaSignet displays the post content and asks about creation method
+- User selects "Entirely by me (human)" and confirms authenticity
+- Optionally, user adds context about their creative process
+- MetaSignet generates a content fingerprint and records the attestation
+- A verification certificate is generated and displayed
 
-metasignet utilizes the following technologies:
+**3. Social Vouching Flow**
+- User views verification requests from their Bluesky connections
+- For each request, they can view the content and choose to vouch
+- User clicks "Vouch as Human" to confirm they believe the content is human-created
+- After receiving multiple vouches, content verification status upgrades to "Human-verified+"
+
+### 3.2 Interface Design
+
+The MetaSignet interface is organized into three main tabs:
+
+**Feed Tab**
+- Displays the user's Bluesky posts with verification status indicators
+- Unverified, Human-verified (self-attested), and Human-verified+ (community vouched) statuses
+- One-click access to verify unverified content
+
+**Verify Tab**
+- Form to enter Bluesky post URL
+- Display of post content and images
+- Creation type selection (human, AI-assisted, AI-generated)
+- Confirmation checkbox for human attestation
+- Optional creation context input
+- Verification certificate display
+
+**Community Tab**
+- List of verification requests from connections
+- Interface to view content and vouch for human creation
+- Personal vouching history
+- Community impact metrics
+
+### 3.3 Verification Certificate
+
+The verification certificate serves as both proof and promotion of human-created content:
+
+- **Visual Design**: Clean, professional appearance with MetaSignet branding
+- **Content Details**: Post preview, content hash, timestamp, creator information
+- **Verification Level**: Clear indication of self-attested vs. community vouched
+- **Blockchain Record**: Transaction ID for blockchain-verified content
+- **Shareable Link**: Short URL for sharing verification status (meta.sg/verify/[hash])
+- **Embed Code**: HTML/image code for embedding verification badge on websites
+
+## 4. System Design and Architecture
+
+### 4.1 Technology Stack
+
+MetaSignet utilizes the following technologies:
 
 - **Frontend**: Streamlit (Python-based web application framework)
-- **Backend**: Python with Web3.py, PIL, imagehash libraries
-- **Blockchain**: Ethereum (Solidity 0.8.2+)
-- **Social Media Integration**: Bluesky via atproto client
-- **Image Processing**: PIL/Pillow with imagehash for perceptual hashing
-- **Development Tools**: Remix IDE, Python development environment
-- **Storage**: Local/cloud storage with blockchain option
+- **Backend**: Python with AT Protocol client for Bluesky integration
+- **Content Analysis**: Image processing with PIL and imagehash for perceptual hashing
+- **Blockchain**: Ethereum with Solidity smart contracts
+- **Web3 Integration**: Web3.py for blockchain connectivity
+- **Development Tools**: Remix IDE for smart contract development, Python environment
 
-### 3.2 System Architecture
+### 4.2 System Architecture
 
 The architecture consists of four primary layers:
 
 1. **User Interface Layer**:
    - Streamlit web application for content registration and verification
    - Bluesky authentication and content fetching
-   - Progressive Web3 adoption interface
    - Verification certificate display
+   - Community vouching interface
 
-2. **Application Layer**:
-   - Python backend processing
-   - Image analysis and fingerprinting
-   - Content hash generation
-   - Web3 integration for blockchain transactions
+2. **Integration Layer**:
+   - AT Protocol client for Bluesky content access
+   - Content fingerprinting engine
+   - Verification status tracking
+   - Web3 connectivity (optional)
 
-3. **Blockchain Layer**:
+3. **Verification Layer**:
+   - Self-attestation system
+   - Social vouching mechanism
+   - Content hash registry
+   - Verification status rules
+
+4. **Blockchain Layer** (optional):
    - Smart contracts for verification logic
-   - Role-based access control system
-   - Event emission for state changes
-   - Optional verification path for enhanced security
+   - Immutable verification records
+   - Decentralized vouching system
+   - Transaction management
 
-4. **Integration Layer**:
-   - Bluesky API integration via atproto
-   - Web3.py for Ethereum interaction
-   - Local/cloud storage for non-blockchain users
-
-### 3.3 Data Structures
+### 4.3 Data Structures
 
 The system implements the following key data structures:
 
-**Blockchain Structures:**
+**Content Verification Record**:
 ```solidity
 struct Content {
-    address creator;         // Address of the content creator
-    string contentHash;      // Unique hash identifying the content
-    uint256 timestamp;       // When the content was registered
-    bool isVerified;         // Whether content is verified by oracle
-    string platformSource;   // Platform where content originated
-    string contentType;      // Type of content (e.g., "image", "text")
-    string originalUrl;      // Original URL where content was posted
-    bool isDisputed;         // Flag for disputed ownership claims
-    mapping(address => bool) authorizedUsers;  // Access control mapping
+    address creator;             // Address of the content creator
+    string contentHash;          // Unique hash identifying the content
+    string contentURI;           // URI of the content (e.g., Bluesky post URL)
+    uint256 timestamp;           // When the content was registered
+    CreationType creationType;   // How the content was created
+    VerificationStatus status;   // Current verification status
+    string creationContext;      // Optional context about the creation process
+    uint256 vouchCount;          // Number of community vouches received
+    string platformSource;       // Platform where content originated
 }
-
-// Content lookup by hash
-mapping(string => Content) public verifiedContent;
-
-// Reverse lookup: maps creator addresses to their content hashes
-mapping(address => string[]) public creatorContent;
 ```
 
-**Local Storage Structures:**
-```python
-# Python dictionary for local content registration
-content_registration = {
-    'hash': content_hash,
-    'platform': platform,
-    'type': content_type,
-    'url': url,
-    'timestamp': timestamp,
-    'verified': verification_status
+**Creation Types**:
+```solidity
+enum CreationType { 
+    UNDECLARED,      // Default state
+    HUMAN_CREATED,   // Content created entirely by human
+    AI_ASSISTED,     // Human created with AI tools
+    AI_GENERATED     // Primarily AI-generated
 }
-
-# Session state storage
-st.session_state.local_registrations[content_hash] = content_registration
 ```
 
-### 3.4 Security Measures
+**Verification Status Levels**:
+```solidity
+enum VerificationStatus {
+    UNVERIFIED,       // Not yet verified
+    SELF_ATTESTED,    // Creator has self-attested
+    COMMUNITY_VOUCHED // Has received community vouching
+}
+```
 
-Our system implements several security measures:
+### 4.4 Content Fingerprinting
 
-1. **Content Fingerprinting**:
-   - Perceptual hashing for resilient content identification
-   - Resistance to minor modifications and format changes
+The content fingerprinting system creates unique, reproducible identifiers for content:
 
-2. **Dual Verification Paths**:
-   - Blockchain verification for maximum security
-   - Local verification for accessibility
+1. **Text Fingerprinting**: Hash generation from text content
+2. **Image Fingerprinting**: Perceptual hash generation resilient to minor modifications
+3. **Combined Fingerprint**: Unified hash combining all content elements
+4. **Verification Lookup**: Fast retrieval of verification status by content hash
 
-3. **Role-Based Access Control**:
-   - Admin role for system management
-   - Trusted oracle role for content verification
-   - Creator role for content registration
+### 4.5 Security Considerations
 
-4. **Progressive Security Model**:
-   - Start with familiar interfaces
-   - Option to upgrade to blockchain verification
-   - Clear indication of verification strength
+The system implements several security measures:
 
-5. **Authentication Security**:
-   - Secure handling of Bluesky credentials
-   - Private key protection for blockchain interactions
+1. **Bluesky Authentication**: Secure handling of Bluesky credentials
+2. **Content Ownership Verification**: Ensures only the content creator can verify
+3. **Sybil Resistance**: Social graph-based vouching limits fake accounts' impact
+4. **Immutable Records**: Blockchain verification prevents history alterations
+5. **Progressive Security**: Multiple verification levels with increasing security
 
-## 4. Implementation Details
+## 5. Implementation Details
 
-### 4.1 Smart Contract Implementation
+### 5.1 Smart Contract Design
 
-The metasignet smart contract implements:
+The MetaSignet smart contract implements:
 
 1. **Content Registration**:
    ```solidity
    function registerContent(
        string memory contentHash,
+       string memory contentURI,
+       CreationType creationType,
        string memory platformSource,
-       string memory contentType,
-       string memory originalUrl
+       string memory creationContext
    ) public payable {
+       // Validation
        require(msg.value >= registrationFee, "Insufficient registration fee");
-       require(verifiedContent[contentHash].creator == address(0), "Content already registered");
+       require(verifiedContent[contentHash].timestamp == 0, "Content already registered");
        
+       // Create new content record
        Content storage newContent = verifiedContent[contentHash];
        newContent.creator = msg.sender;
        newContent.contentHash = contentHash;
+       newContent.contentURI = contentURI;
        newContent.timestamp = block.timestamp;
-       newContent.isVerified = false;
+       newContent.creationType = creationType;
+       newContent.status = VerificationStatus.SELF_ATTESTED;
+       newContent.creationContext = creationContext;
+       newContent.vouchCount = 0;
        newContent.platformSource = platformSource;
-       newContent.contentType = contentType;
-       newContent.originalUrl = originalUrl;
-       newContent.isDisputed = false;
-       newContent.authorizedUsers[msg.sender] = true;
        
+       // Add to creator's content list
        creatorContent[msg.sender].push(contentHash);
        
-       payable(feeCollector).transfer(msg.value);
+       // Handle registration fee
+       if (msg.value > 0) {
+           payable(feeCollector).transfer(msg.value);
+       }
        
-       emit ContentRegistered(contentHash, msg.sender, originalUrl);
+       // Emit events
+       emit ContentRegistered(contentHash, msg.sender, contentURI, creationType);
+       emit VerificationStatusUpdated(contentHash, VerificationStatus.SELF_ATTESTED);
    }
    ```
 
-2. **Trusted Oracle Verification**:
+2. **Social Vouching**:
    ```solidity
-   function verifyContent(string memory contentHash) public onlyTrustedOracle contentExists(contentHash) {
-       verifiedContent[contentHash].isVerified = true;
-       emit ContentVerified(contentHash, msg.sender);
+   function vouchForContent(string memory contentHash) 
+       public 
+       contentExists(contentHash) 
+       hasNotVouched(contentHash) 
+   {
+       require(verifiedContent[contentHash].creator != msg.sender, "Cannot vouch for your own content");
+       require(verifiedContent[contentHash].creationType == CreationType.HUMAN_CREATED, 
+               "Can only vouch for human-created content");
+       
+       // Record the vouch
+       contentVouches[contentHash][msg.sender] = true;
+       verifiedContent[contentHash].vouchCount += 1;
+       
+       emit ContentVouched(contentHash, msg.sender);
+       
+       // Update verification status if threshold reached
+       if (verifiedContent[contentHash].vouchCount >= vouchThreshold && 
+           verifiedContent[contentHash].status == VerificationStatus.SELF_ATTESTED) {
+           verifiedContent[contentHash].status = VerificationStatus.COMMUNITY_VOUCHED;
+           emit VerificationStatusUpdated(contentHash, VerificationStatus.COMMUNITY_VOUCHED);
+       }
    }
    ```
 
-3. **Progressive Web3 Adoption Support**:
+3. **Verification Status Checking**:
    ```solidity
-   function preRegisterContentForUser(
-       string memory contentHash,
-       string memory platformSource,
-       string memory contentType,
-       string memory originalUrl,
-       address creator
-   ) public onlyTrustedOracle {
-       require(verifiedContent[contentHash].creator == address(0), "Content already registered");
-       // Register content for users without wallets
-       // Implementation continues...
+   function isHumanVerified(string memory contentHash) 
+       public 
+       view 
+       returns (bool isHuman, VerificationStatus verificationLevel) 
+   {
+       Content storage content = verifiedContent[contentHash];
+       bool isHumanContent = (content.creationType == CreationType.HUMAN_CREATED);
+       
+       return (isHumanContent, content.status);
    }
    ```
 
-### 4.2 Streamlit Implementation
+### 5.2 Streamlit Implementation
 
 The Streamlit frontend implements:
 
@@ -249,35 +306,30 @@ The Streamlit frontend implements:
 
 2. **Content Fetching**:
    ```python
-   def get_post_images(self, post_uri):
-       """Fetch images from a Bluesky post"""
-       # Implementation for fetching post content from Bluesky
-       # Using atproto client to access Bluesky API
+   def get_post_details(self, post_uri):
+       """Fetch post details and images from a Bluesky post"""
+       # Implementation for AT Protocol integration
+       # Fetch post content, metadata, and images
    ```
 
-3. **Image Processing**:
+3. **Content Fingerprinting**:
    ```python
-   def compute_image_hash(self, image):
-       """Compute perceptual hash of image"""
-       if isinstance(image, bytes):
-           image = Image.open(io.BytesIO(image))
-       return str(imagehash.average_hash(image))
+   def compute_content_hash(self, post_details):
+       """Compute hash of content based on text and images"""
+       # Generate text hash
+       # Generate image perceptual hashes
+       # Combine into unified content fingerprint
    ```
 
-4. **Dual Verification Paths**:
+4. **Human Verification**:
    ```python
-   # Blockchain registration
-   def register_on_blockchain(self, content_hash, platform, content_type, url):
-       """Register content hash on blockchain"""
-       # Implementation for Web3 transaction
-       
-   # Local registration fallback
-   def register_locally(self, content_hash, platform, content_type, url):
-       """Register content in local database when blockchain not available"""
-       # Implementation for local storage
+   def verify_human_content(self, content_hash, post_uri, creation_type, creation_context=""):
+       """Register content as human-created"""
+       # Implement verification process
+       # Optional blockchain integration
    ```
 
-### 4.3 Bluesky Integration
+### 5.3 AT Protocol Integration
 
 The integration with Bluesky is managed through:
 
@@ -289,55 +341,163 @@ The integration with Bluesky is managed through:
 2. **Content Access**:
    - Post URI parsing to extract post ID
    - API calls to retrieve post content
-   - Image extraction from post embeds
+   - Image and text extraction
 
-3. **Error Handling**:
-   - Rate limit management
-   - Graceful handling of API changes
-   - Clear error messages for users
+3. **Feed Integration**:
+   - Fetching user's Bluesky posts
+   - Displaying with verification status
+   - Synchronizing verification metadata
 
-## 5. Testing and Evaluation
+## 6. Development Roadmap
 
-### 5.1 Testing Methodology
+### 6.1 Phase 1: Core Verification (Months 1-2)
+- Implement Bluesky authentication via AT Protocol
+- Develop content fingerprinting system
+- Create self-attestation verification flow
+- Build basic verification certificate system
+- Deploy initial Streamlit application
 
-Potential testing approach:
+### 6.2 Phase 2: Community Vouching (Months 3-4)
+- Implement social vouching system
+- Develop community verification interface
+- Create verification request notifications
+- Enhance verification certificate with vouching status
+- Deploy smart contract for verification (optional)
 
-1. **Smart Contract Testing**: Unit tests for contract functions
-2. **Streamlit UI Testing**: Interface functionality and responsiveness
-3. **Bluesky API Testing**: Integration with the social platform
-4. **Image Processing Testing**: Hash generation and comparison
-5. **Web3 Integration Testing**: Blockchain transaction handling
-6. **End-to-End Workflow Testing**: Complete user journeys
-7. **User Acceptance Testing**: Real-world user testing with feedback collection
+### 6.3 Phase 3: Enhanced Usability (Months 5-6)
+- Improve user interface and experience
+- Add verification badge embedding system
+- Develop verification API for third-party integration
+- Create verification analytics dashboard
+- Implement content search and filtering
 
-## 6. Challenges and Solutions
+### 6.4 Phase 4: Expansion (Months 7+)
+- Integrate with additional identity systems (Gitcoin Passport/BrightID)
+- Expand to other social media platforms
+- Develop mobile application
+- Implement advanced content fingerprinting
+- Create verification browser extension
 
-### 6.1 Technical Challenges
+## 7. User Experience Design Details
 
-| Challenge | Solution | Outcome |
-|-----------|----------|---------|
-| Bluesky API Limitations | Implemented robust error handling and fallbacks | Reliable content retrieval |
-| Web3 Complexity for Users | Created progressive adoption approach | Improved accessibility |
-| Image Format Compatibility | Added multi-format support in hash generation | Support for common image formats |
-| Blockchain Transaction Costs | Implemented optional verification paths | Cost flexibility for users |
-| Session Management | Secure state management in Streamlit | Persistent user sessions |
+### 7.1 Key Screens
 
+**Landing Page**
+- Clear value proposition: "Verify your human-created content on Bluesky"
+- "Sign in with Bluesky" button prominently displayed
+- Explanation of verification levels
+- Benefits for creators and audience
 
-## 7. Future Work
+**Feed View**
+- List of user's Bluesky posts with verification status
+- Status indicators: Unverified, Human-verified, Human-verified+
+- Quick actions for verification and sharing
+- Filter options for viewing different verification statuses
 
-### 7.1 Long-term Vision
+**Verification Flow**
+- Post selection interface
+- Content display with images and text
+- Creation type selection (human, AI-assisted, AI-generated)
+- Human creation confirmation checkbox
+- Optional creative process description
+- Verification certificate generation
 
-1. **Dedicated Mobile Application**: Native iOS and Android apps for on-the-go verification
-2. **Decentralized Storage Integration**: IPFS integration for content storage
-3. **Layer 2 Scaling**: Integration with Ethereum Layer 2 solutions for lower costs
-4. **Verification API**: Developer API for third-party integration
-5. **DAO Governance**: Community governance for verification parameters
-6. **Content Licensing Framework**: Extend verification to include licensing information
+**Community Interface**
+- Verification requests from connections
+- Content preview for vouching decisions
+- Vouching action button
+- Personal vouching history
+- Impact metrics for community contribution
 
-## 8. Conclusion
+**Verification Certificate**
+- Content preview (image thumbnail and excerpt)
+- Verification details (timestamp, hash, verification level)
+- Creator information
+- Blockchain verification details (if applicable)
+- Sharing options and embed code
 
-metasignet successfully demonstrates that a hybrid approach combining Streamlit's accessibility with blockchain's security can effectively address the critical problem of content authenticity on social media platforms, particularly for Bluesky users. By providing dual verification paths, the system bridges the gap between blockchain technology and mainstream user adoption.
+### 7.2 User Onboarding
 
-The implementation of perceptual image hashing, Bluesky integration, and progressive Web3 adoption creates a robust foundation for content verification that can scale across platforms and content types. User testing confirms both the technical viability and market interest for such a solution.
+The onboarding process is designed to be simple and straightforward:
 
-While challenges remain in terms of blockchain complexity, content type support, and cross-platform integration, our prototype provides a solid foundation for future development. By continuing to refine this hybrid approach, we believe metasignet can become a standard tool for content creators looking to protect and verify their digital creations across the evolving social media landscape.
+1. **First-time Welcome**: Brief introduction to MetaSignet's purpose
+2. **Authentication**: "Sign in with Bluesky" to connect account
+3. **Feed View Introduction**: Tour of verification status indicators
+4. **First Verification**: Guided process for verifying first content
+5. **Certificate Sharing**: Instructions for sharing verification
+6. **Community Introduction**: Explanation of social vouching
+
+### 7.3 Mobile Responsiveness
+
+The Streamlit interface will be designed with mobile users in mind:
+
+- Responsive layout adjusts to screen size
+- Touch-friendly interface elements
+- Simplified mobile navigation
+- Optimized certificate display for mobile sharing
+
+## 8. Business Model Considerations
+
+### 8.1 Value Proposition by Stakeholder
+
+**For Content Creators**:
+- Distinguish their work as human-created
+- Build reputation and trust with audience
+- Protect against AI-generated mimicry
+- Promote authentic human creativity
+
+**For Audiences**:
+- Easily identify human-created content
+- Support authentic creators
+- Filter for preferred content types
+- Participate in community verification
+
+**For Platforms**:
+- Add content verification layer
+- Enhance trust in platform content
+- Support creator ecosystem
+- Differentiate from competitors
+
+### 8.2 Potential Revenue Streams
+
+While the initial implementation will focus on providing value rather than monetization, future revenue opportunities include:
+
+1. **Premium Features**:
+   - Advanced verification certificates
+   - Verification analytics
+   - Batch verification tools
+   - API access for creators
+
+2. **Platform Integration**:
+   - Licensing to social media platforms
+   - Verification API services
+   - Custom verification implementations
+   - White-label solutions
+
+3. **Creator Services**:
+   - Enhanced promotion for verified content
+   - Cross-platform verification
+   - Verification badges and plugins
+   - Verification monitoring services
+
+## 9. Conclusion
+
+MetaSignet addresses a growing need in the evolving social media landscape: distinguishing human-created content from the rising tide of AI-generated material. By providing a user-friendly, accessible verification system integrated directly with Bluesky, MetaSignet empowers creators to proudly declare and verify their human creative work.
+
+The hybrid approach combining the accessibility of Streamlit with the security of blockchain creates a solution that can grow with users, from simple self-attestation to community vouching and potentially integration with broader identity verification systems.
+
+As AI content generation continues to advance, the value of human creativity and the need to distinguish it will only increase. MetaSignet provides the foundation for a new layer of trust and authenticity in digital content, starting with Bluesky and expandable to the broader social media ecosystem.
+
+## Appendices
+
+### Appendix A: Technical Specifications
+*(Details of API integrations, data structures, and implementation specifics)*
+
+### Appendix B: User Experience Flows
+*(Detailed user journey maps and interface mockups)*
+
+### Appendix C: Smart Contract Documentation
+*(Full technical documentation of smart contract functions and security considerations)*
+
+### Appendix D: Market Analysis
+*(Detailed analysis of target audience, competition, and market opportunity)*
