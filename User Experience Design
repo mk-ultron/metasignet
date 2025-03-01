@@ -1,0 +1,306 @@
+# MetaSignet: User Experience Design
+
+## 1. Overview
+
+MetaSignet delivers a seamless experience for verifying human-created content on Bluesky. This document outlines the key user flows, interface design decisions, and experience considerations that form the foundation of the application.
+
+## 2. User Personas
+
+### Primary Persona: Content Creator (Maya)
+- **Background**: Digital artist and writer who posts original work on Bluesky
+- **Goals**: Distinguish her work from AI-generated content; build reputation for authentic creation
+- **Pain Points**: Concerned about AI mimicry; wants recognition for human creativity
+- **Tech Level**: Comfortable with social media but not blockchain technology
+
+### Secondary Persona: Content Consumer (Alex)
+- **Background**: Active Bluesky user who values authentic human creation
+- **Goals**: Find and support genuine human creators; filter out AI-generated content
+- **Pain Points**: Difficulty identifying trustworthy human content; values authenticity
+- **Tech Level**: Regular social media user with no technical blockchain knowledge
+
+### Tertiary Persona: Community Verifier (Jordan)
+- **Background**: Engaged community member who follows many creators
+- **Goals**: Help trustworthy creators get recognized; contribute to platform trust
+- **Pain Points**: Wants to promote authenticity without complex verification processes
+- **Tech Level**: Above average digital literacy but prefers simple interfaces
+
+## 3. Core User Flows
+
+### 3.1 Authentication Flow
+
+1. **Entry Point**: User visits metasignet.app
+2. **First Impression**: Clean landing page explaining human verification
+3. **Authentication**: User clicks "Sign in with Bluesky" button
+4. **Credentials**: Enters Bluesky username and app password
+5. **Success State**: Redirected to authenticated Feed view
+6. **Error Handling**: Clear error messages if authentication fails
+
+### 3.2 Content Verification Flow
+
+1. **Initiation**: User selects "Verify" tab or "Verify as Human" button on a post
+2. **Content Selection**: Inputs Bluesky post URL or selects from their posts
+3. **Content Preview**: Views post content with images and text displayed
+4. **Verification Options**: Selects content creation type:
+   - "Entirely by me (human)"
+   - "With AI assistance"
+   - "Primarily by AI"
+5. **Human Confirmation**: If "human-created," confirms with checkbox
+6. **Optional Context**: Adds details about creative process (optional)
+7. **Submission**: Clicks "Verify Content" button
+8. **Processing**: Brief loading state with spinner
+9. **Success State**: Displays verification certificate with unique hash
+10. **Sharing Options**: One-click options to share certificate
+
+### 3.3 Social Vouching Flow
+
+1. **Initiation**: User navigates to "Community" tab
+2. **Request Viewing**: Sees verification requests from connections
+3. **Content Examination**: Views the content to be vouched for
+4. **Decision Point**: Evaluates if content appears human-created
+5. **Vouching Action**: Clicks "Vouch as Human" if confident
+6. **Confirmation**: Brief confirmation dialog explaining responsibility
+7. **Success State**: Updated vouching count and success message
+8. **Impact Feedback**: Shows impact of vouching on verification status
+
+## 4. Interface Design
+
+### 4.1 Navigation Structure
+
+The application uses a three-tab structure for clear navigation:
+
+```
+[Feed] [Verify] [Community]
+```
+
+**Feed Tab**: Displays Bluesky content with verification status
+- Post listing with thumbnails
+- Verification status indicators
+- Action buttons for unverified content
+
+**Verify Tab**: Central verification functionality
+- URL input field
+- Content preview area
+- Verification options
+- Certificate display
+
+**Community Tab**: Social vouching interface
+- Verification requests section
+- Vouching history section
+- Impact metrics
+
+### 4.2 Visual Hierarchy
+
+**Color System**:
+- Primary: Deep blue (#1E40AF) - Trust and verification
+- Success: Green (#10B981) - Verified human content
+- Warning: Amber (#F59E0B) - AI-assisted content
+- Info: Purple (#8B5CF6) - AI-generated content
+- Background: Light gray (#F9FAFB) - Clean, readable interface
+
+**Verification Status Indicators**:
+- Unverified: Gray circle
+- Human-verified: Green circle with checkmark ✓
+- Human-verified+: Green circle with double checkmark ✓✓
+
+**Typography**:
+- Headings: Inter, semi-bold, 24px/20px/18px
+- Body: Inter, regular, 16px
+- Metadata: Inter, light, 14px
+- Buttons: Inter, medium, 16px
+
+### 4.3 Verification Certificate Design
+
+The certificate features a professional, shareable design:
+
+```
+┌─────────────────────────────────────┐
+│           MetaSignet                │
+│      Human Content Verification     │
+├─────────────┬───────────────────────┤
+│             │                       │
+│  [Content   │  Content Title        │
+│   Preview]  │  @creator             │
+│             │                       │
+│             │  Content Hash: abc123 │
+│             │  Verified: Human ✓    │
+│             │  Date: 2023-06-12     │
+│             │                       │
+├─────────────┴───────────────────────┤
+│ Verify at: metasignet.app/v/abc123  │
+└─────────────────────────────────────┘
+```
+
+Key features:
+- Content preview thumbnail
+- Creator information
+- Verification status with visual indicator
+- Unique content hash for verification
+- Timestamp of verification
+- Verification URL for sharing
+
+## 5. Interaction Patterns
+
+### 5.1 Verification Status Progression
+
+**Visual progression of verification status**:
+1. Unverified (gray) → 
+2. Human-verified (green) → 
+3. Human-verified+ (green with added indicators)
+
+**Interactions to change status**:
+- Self-attestation: Creator verifies own content as human-created
+- Community vouching: Other users vouch for content's human origin
+- Status upgrade: Automatic when threshold of vouches reached
+
+### 5.2 Contextual Actions
+
+Each content piece has relevant actions based on its state:
+
+**Unverified Content**:
+- "Verify as Human" (for creator's own content)
+- "View on Bluesky" (for any content)
+
+**Self-Attested Content**:
+- "View Certificate" 
+- "Share Certificate"
+- "Vouch for This" (for others' content)
+
+**Community-Vouched Content**:
+- "View Certificate"
+- "Share Certificate"
+- "See Vouches" (shows who has vouched)
+
+### 5.3 Progressive Disclosure
+
+Information is revealed progressively to avoid overwhelming users:
+
+1. **Basic Information**: Initially shown for all content
+   - Creator name
+   - Content snippet
+   - Verification status
+   
+2. **Verification Details**: Revealed on interaction
+   - Content hash
+   - Timestamp
+   - Verification method
+   
+3. **Technical Details**: Available through "Advanced" expander
+   - Blockchain transaction (if applicable)
+   - Hash generation method
+   - Vouch record details
+
+## 6. Responsive Design Considerations
+
+### 6.1 Desktop Experience
+- Three-column layout for feed items
+- Side-by-side content and verification options
+- Horizontal certificate display
+- Expanded metadata visibility
+
+### 6.2 Tablet Experience
+- Two-column layout for feed items
+- Stacked content and verification on verification page
+- Adapted certificate for medium screens
+- Collapsed metadata sections
+
+### 6.3 Mobile Experience
+- Single-column layout throughout
+- Simplified verification flow with progressive steps
+- Vertically oriented certificate
+- Minimal metadata with expandable sections
+
+## 7. Accessibility Considerations
+
+### 7.1 Design Principles
+- Minimum contrast ratio of 4.5:1 for all text
+- Focus indicators for keyboard navigation
+- Alternative text for all images and icons
+- Scalable text that respects system settings
+
+### 7.2 Specific Implementations
+- Screen reader support for verification status
+- Keyboard-navigable verification process
+- Multiple methods to identify verification status (color + icon + text)
+- Sufficient touch targets (minimum 44×44px) for mobile users
+
+## 8. Onboarding Experience
+
+### 8.1 First-Time User Experience
+1. **Welcome Screen**: Brief introduction to MetaSignet's purpose
+2. **Value Proposition**: Clear explanation of human verification benefits
+3. **Authentication Prompt**: "Sign in with Bluesky" button
+4. **Feature Spotlight**: Guided tooltip tour of key features
+5. **First Verification**: Guided process for first content verification
+
+### 8.2 Progressive Feature Introduction
+- Initial focus on basic verification (Feed and Verify tabs)
+- Community tab introduced after successful verification
+- Advanced features revealed after basic familiarity established
+- Contextual help available throughout the interface
+
+## 9. Error States & Recovery
+
+### 9.1 Common Error Scenarios
+- Authentication failure
+- Content fetch failure
+- Verification process interruption
+- Blockchain connection issues
+- Vouching limitations (self-vouching attempt)
+
+### 9.2 Error Handling Principles
+- Clear error messages in plain language
+- Suggested actions for resolution
+- Preservation of user input where possible
+- Graceful fallbacks for failed operations
+
+### 9.3 Example Error Handling
+
+**Authentication Error**:
+```
+Unable to connect to Bluesky. Please check your credentials and try again.
+[Try Again] [Need Help?]
+```
+
+**Content Fetch Error**:
+```
+Could not retrieve this Bluesky post. It may be private or deleted.
+[Try Different Post] [Learn More]
+```
+
+**Blockchain Connection Error**:
+```
+Blockchain verification currently unavailable. Your content has been verified locally.
+[Retry Blockchain] [Continue with Local]
+```
+
+## 10. Success Metrics
+
+### 10.1 Key Performance Indicators
+- **Adoption Rate**: Percentage of users who verify content after sign-up
+- **Verification Completion**: Percentage of started verifications completed
+- **Certificate Sharing**: Frequency of certificate sharing
+- **Community Engagement**: Average vouches per verified content
+- **Return Usage**: Frequency of return visits for verification
+
+### 10.2 User Satisfaction Metrics
+- Post-verification satisfaction surveys
+- Certificate sharing rates
+- Feature usage analytics
+- Time-to-completion for core flows
+- Dropout points in verification process
+
+## 11. Future Enhancements
+
+### 11.1 Planned UX Improvements
+- Batch verification for multiple content pieces
+- Customizable verification certificates
+- Enhanced analytics for creators
+- Verification badges for profile embedding
+- Integration with creator workflows
+
+### 11.2 Community-Requested Features
+- Verification directories and search
+- Featured verified creator spotlights
+- Trending verified content
+- Category-specific verification communities
+- Verification API for third-party applications
