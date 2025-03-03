@@ -1,4 +1,5 @@
 import streamlit as st
+from supabase import create_client
 from atproto import Client
 import imagehash
 from PIL import Image
@@ -13,6 +14,45 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+# Initialize Supabase client - use environment variables for secrets
+supabase_url = st.secrets["SUPABASE_URL"] if "SUPABASE_URL" in st.secrets else os.environ.get("SUPABASE_URL")
+supabase_key = st.secrets["SUPABASE_KEY"] if "SUPABASE_KEY" in st.secrets else os.environ.get("SUPABASE_KEY")
+supabase = create_client(supabase_url, supabase_key)
+
+# Function to store a verification
+def store_verification(content_hash, content_uri, user_id, creation_type, creation_context=""):
+    data = supabase.table("verifications").insert({
+        "content_hash": content_hash,
+        "content_uri": content_uri,
+        "user_id": user_id,
+        "creation_type": creation_type,
+        "creation_context": creation_context
+    }).execute()
+    return data.data
+
+# Function to get verification status
+def get_verification(content_hash):
+    response = supabase.table("verifications").select("*").eq("content_hash", content_hash).execute()
+    return response.data[0] if response.data else None
+
+# Function to add a vouch
+def add_vouch(content_hash):
+    # First get current vouch count
+    verification = get_verification(content_hash)
+    if not verification:
+        return None
+    
+    # Update vouch count
+    new_count = verification["vouches"] + 1
+    status = 2 if new_count >= 3 else 1  # Update to community vouched if threshold met
+    
+    response = supabase.table("verifications").update({
+        "vouches": new_count,
+        "status": status
+    }).eq("content_hash", content_hash).execute()
+    
+    return response.data[0] if response.data else None
+    
 # Simplified Contract ABI for proposal
 CONTRACT_ABI = json.loads('''
 [
