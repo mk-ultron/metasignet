@@ -364,12 +364,22 @@ def main():
         st.header("Sign in with Bluesky")
         
         # Bluesky Authentication
-        username = st.text_input("Username", key="bluesky_username")
-        password = st.text_input("App Password", type="password", key="bluesky_password")
-        if st.button("Sign in"):
+        # Move the username and password inputs to be in the login form to fix the error
+        
+        
+        if "login_form_submitted" not in st.session_state:
+             st.session_state.login_form_submitted = False
+             
+        with st.form("login_form"):
+            username = st.text_input("Username", key="bluesky_username_form")
+            password = st.text_input("App Password", type="password", key="bluesky_password_form")
+            submitted = st.form_submit_button("Sign in")
+            if submitted:
+                st.session_state.login_form_submitted = True
+
+        if st.session_state.login_form_submitted:
             if app.login_bluesky(username, password):
                 st.success("Signed in successfully!")
-                
         # Web3 Connection Status
         st.divider()
         st.subheader("Blockchain Status")
